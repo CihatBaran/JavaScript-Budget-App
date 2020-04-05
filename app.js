@@ -41,17 +41,26 @@ var UIController =(function(){
 
 var controller = (function(budgetCtrl, UICtrl){
 	
-	document.querySelector('.add__btn').addEventListener('click', function(){		
-			
+	
+	var ctrlAddItem = function(){
+		
 				// 1. Get the field input data
 				// 2. Add the item to the budget controller
 				// 3. Add the item to the user interface
 				// 4. Calculate the budget
 				// 5. Display the button
-			
-	});
+				console.log("DRY === Dont Repeat Yourself")
+	};
+	
+	
+	document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
 	
 	document.addEventListener('keypress', function(event){
+		
+		// keycode 13 means Enter
+		if (event.keyCode === 13) {
+			ctrlAddItem();		
+		};
 		
 	});
 	
