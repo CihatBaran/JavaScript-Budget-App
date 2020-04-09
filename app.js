@@ -84,6 +84,26 @@ var budgetController = (function () {
             return newItem;
         },
 
+        deleteItem: function (type, id) {
+
+            var index, ids;
+
+            ids = data.allItems[type].map(function (current) {
+                return current.id;
+            });
+            
+           
+            index = ids.indexOf(id);
+    
+            if (index !== -1) { //-1 means index of id were not found
+                data.allItems[type].splice(index, 1); // 1 means we want to delete only one
+                //after matching with array spesific index we have defined
+            }
+
+
+        },
+
+
         calculateBudget: function () {
             // calculate total income and expenses
             calculateTotal('exp');
@@ -111,9 +131,9 @@ var budgetController = (function () {
             }
         },
 
-        //        testing: function () {
-        //            console.log(data);
-        //        }
+        testing: function () {
+            console.log(data);
+        }
 
     };
 
@@ -291,7 +311,7 @@ var controller = (function (budgetCtrl, UICtrl) {
     };
 
     var ctrlDeleteItem = function (event) {
-        var itemID,splitID,type,ID;
+        var itemID, splitID, type, ID;
         // it returns the 4 parentNode of the icon
         // we want to reach it's id.
 
@@ -300,19 +320,21 @@ var controller = (function (budgetCtrl, UICtrl) {
         if (itemID) {
             // inc-0 we want it like this, inc is type and 0 will be ID
             splitID = itemID.split('-')
-            
+
             type = splitID[0];
-            
-            ID = splitId[1];
+
+            ID = parseInt(splitID[1]);
             
             // 1. delete the item from the data structure
-            
+            budgetCtrl.deleteItem(type, ID);
+
+
             // 2. delete the item from the UI
-            
+
             // 3. Update and show the new budget
-            
+
         }
-        
+
         // element = inc-1
         // element.split("-");
         // returns ["inc", "1"]
