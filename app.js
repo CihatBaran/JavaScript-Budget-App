@@ -160,6 +160,7 @@ var UIController = (function () {
         expenseLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
         container: '.container',
+        
     }
 
     return { //Inside return is visible from outside;
@@ -171,6 +172,13 @@ var UIController = (function () {
                 value: parseFloat(document.querySelector(DOMstrings.inputValue).value),
             }
 
+        },
+        
+        deleteListItem: function(selectionID){
+            // do something
+            var selection = document.querySelector("#"+selectionID);
+            selection.parentNode.removeChild(selection);
+            
         },
 
         addListItem: function (obj, type) {
@@ -227,7 +235,7 @@ var UIController = (function () {
 
 
         },
-
+        
         displayBudget: function (obj) {
 
             document.querySelector(DOMstrings.budgetLabel).textContent = "+" + obj.budget;
@@ -273,8 +281,9 @@ var controller = (function (budgetCtrl, UICtrl) {
         });
 
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
-
+        
     }
+    
 
     var updateBudget = function () {
         // 5. Calculate the budget
@@ -286,7 +295,8 @@ var controller = (function (budgetCtrl, UICtrl) {
         // 7. Display the budget
         UICtrl.displayBudget(budget);
     };
-
+    
+   
     var ctrlAddItem = function () {
 
         var input, newItem;
@@ -330,8 +340,10 @@ var controller = (function (budgetCtrl, UICtrl) {
 
 
             // 2. delete the item from the UI
-
+            UICtrl.deleteListItem(itemID);
+            
             // 3. Update and show the new budget
+            updateBudget();
 
         }
 
