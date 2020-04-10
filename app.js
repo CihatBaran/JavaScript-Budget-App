@@ -103,7 +103,6 @@ var budgetController = (function () {
 
         },
 
-
         calculateBudget: function () {
             // calculate total income and expenses
             calculateTotal('exp');
@@ -122,6 +121,10 @@ var budgetController = (function () {
 
         },
 
+        calculatesPercentages: function(){
+            
+        },
+        
         getBudget: function () {
             return {
                 budget: data.budget,
@@ -296,7 +299,19 @@ var controller = (function (budgetCtrl, UICtrl) {
         UICtrl.displayBudget(budget);
     };
     
-   
+    var updatePercentages = function(){
+        
+        //1. calculate percentage
+        
+        
+        //2. read the in budget controller
+        
+        
+        //3. Update the user interface
+        
+    };
+    
+     
     var ctrlAddItem = function () {
 
         var input, newItem;
@@ -316,7 +331,12 @@ var controller = (function (budgetCtrl, UICtrl) {
 
             // 5. Calculate and Update Budget
             updateBudget();
+            
+            // 6. Calculate and update percentages
+            updatePercentages();
         }
+        
+        
 
     };
 
@@ -344,6 +364,9 @@ var controller = (function (budgetCtrl, UICtrl) {
             
             // 3. Update and show the new budget
             updateBudget();
+            
+            // 4. Update percentages
+            updatePercentages();
 
         }
 
